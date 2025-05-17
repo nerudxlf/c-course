@@ -46,7 +46,7 @@ Node* filter(const Node *node, Node *acc, bool (*predicate)(long)) {
     return filter(node->next, acc, predicate);
 }
 
-int main() {
+int main(void) {
     long data[] = {4, 8, 15, 16, 23, 42};
     size_t data_length = sizeof(data) / sizeof(data[0]);
 
