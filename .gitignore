@@ -3,3 +3,4 @@ local/
 *.out
 solution
 build/
+.continue/
