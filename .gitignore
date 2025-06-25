@@ -4,3 +4,4 @@ local/
 solution
 build/
 .continue/
+*.log.*
