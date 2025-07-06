@@ -1,0 +1,22 @@
+--- clib-package.c	2025-07-06 14:38:00
++++ clib-package-copy.c	2025-07-06 14:37:43
+@@ -654,7 +654,11 @@
+     if (retries-- <= 0) {
+       goto error;
+     } else {
+-#ifdef HAVE_PTHREADS
++      if (res) {
++        http_get_free(res);
++      }
++#ifdef HAVE_PTHREADSif (!res || !res->ok) {
+       init_curl_share();
+       _debug("GET %s", json_url);
+       res = http_get_shared(json_url, clib_package_curl_share);
+@@ -664,6 +668,7 @@
+       json = res->data;
+       _debug("status: %d", res->status);
+       if (!res || !res->ok) {
++        http_get_free(res);
+         goto download;
+       }
+       log = "fetch";
